@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "205521380063",
+    "project_id": "piyushfirebasebloc",
+    "storage_bucket": "piyushfirebasebloc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:205521380063:android:612fdafa3ea6b6b30e3f6a",
+        "android_client_info": {
+          "package_name": "com.piyush_flutter_bloc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "205521380063-bdqt69kellqo24rv5dqn97kbvhc828ji.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZ2tiOLm135ivurPejr56nxYtWQyYC9Zo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "205521380063-bdqt69kellqo24rv5dqn97kbvhc828ji.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
