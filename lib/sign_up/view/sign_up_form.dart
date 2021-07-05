@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:piyush_flutter_bloc/sign_up/cubit/sign_up_cubit.dart';
+import 'package:piyush_flutter_bloc/sign_up/bloc/sign_up_bloc.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener<SignUpCubit, SignUpState>(
+    return BlocListener<SignUpBloc, SignUpState>(
       listener: (context, state) {
         if (state.status.isSubmissionSuccess) {
           Navigator.of(context).pop();
@@ -42,12 +42,14 @@ class SignUpForm extends StatelessWidget {
 class _EmailInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
+    return BlocBuilder<SignUpBloc, SignUpState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
         return TextField(
           key: const Key('signUpForm_emailInput_textField'),
-          onChanged: (email) => context.read<SignUpCubit>().emailChanged(email),
+          textInputAction: TextInputAction.next,
+          onChanged: (value) =>
+              context.read<SignUpBloc>().add(EmailChanged(email: value)),
           keyboardType: TextInputType.emailAddress,
           decoration: InputDecoration(
             labelText: 'email',
@@ -63,13 +65,14 @@ class _EmailInput extends StatelessWidget {
 class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
+    return BlocBuilder<SignUpBloc, SignUpState>(
       buildWhen: (previous, current) => previous.password != current.password,
       builder: (context, state) {
         return TextField(
           key: const Key('signUpForm_passwordInput_textField'),
-          onChanged: (password) =>
-              context.read<SignUpCubit>().passwordChanged(password),
+          textInputAction: TextInputAction.next,
+          onChanged: (value) =>
+              context.read<SignUpBloc>().add(PasswordChanged(password: value)),
           obscureText: true,
           decoration: InputDecoration(
             labelText: 'password',
@@ -85,16 +88,17 @@ class _PasswordInput extends StatelessWidget {
 class _ConfirmPasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
+    return BlocBuilder<SignUpBloc, SignUpState>(
       buildWhen: (previous, current) =>
-      previous.password != current.password ||
+          previous.password != current.password ||
           previous.confirmedPassword != current.confirmedPassword,
       builder: (context, state) {
         return TextField(
           key: const Key('signUpForm_confirmedPasswordInput_textField'),
-          onChanged: (confirmPassword) => context
-              .read<SignUpCubit>()
-              .confirmedPasswordChanged(confirmPassword),
+          textInputAction: TextInputAction.done,
+          onChanged: (value) => context
+              .read<SignUpBloc>()
+              .add(ConfirmPasswordChanged(confirmPassword: value)),
           obscureText: true,
           decoration: InputDecoration(
             labelText: 'confirm password',
@@ -112,24 +116,24 @@ class _ConfirmPasswordInput extends StatelessWidget {
 class _SignUpButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return BlocBuilder<SignUpCubit, SignUpState>(
+    return BlocBuilder<SignUpBloc, SignUpState>(
       buildWhen: (previous, current) => previous.status != current.status,
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
             : ElevatedButton(
-          key: const Key('signUpForm_continue_raisedButton'),
-          style: ElevatedButton.styleFrom(
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30.0),
-            ),
-            primary: Colors.orangeAccent,
-          ),
-          onPressed: state.status.isValidated
-              ? () => context.read<SignUpCubit>().signUpFormSubmitted()
-              : null,
-          child: const Text('SIGN UP'),
-        );
+                key: const Key('signUpForm_continue_raisedButton'),
+                style: ElevatedButton.styleFrom(
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
+                  primary: Colors.orangeAccent,
+                ),
+                onPressed: state.status.isValidated
+                    ? () => context.read<SignUpBloc>().add(FormSubmitted())
+                    : null,
+                child: const Text('SIGN UP'),
+              );
       },
     );
   }
