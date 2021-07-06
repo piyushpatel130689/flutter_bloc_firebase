@@ -7,6 +7,7 @@ class SignUpState extends Equatable {
     this.confirmedPassword = const ConfirmedPassword.pure(),
     this.status = FormzStatus.pure,
     this.isObscure = true,
+    this.image = '',
   });
 
   final Email email;
@@ -14,10 +15,11 @@ class SignUpState extends Equatable {
   final ConfirmedPassword confirmedPassword;
   final FormzStatus status;
   final bool isObscure;
+  final String image;
 
   @override
   List<Object> get props =>
-      [email, password, confirmedPassword, status, isObscure];
+      [email, password, confirmedPassword, status, isObscure, image];
 
   SignUpState copyWith({
     Email? email,
@@ -25,12 +27,14 @@ class SignUpState extends Equatable {
     ConfirmedPassword? confirmedPassword,
     FormzStatus? status,
     bool? isObscure,
+    String? image,
   }) {
     return SignUpState(
         email: email ?? this.email,
         password: password ?? this.password,
         confirmedPassword: confirmedPassword ?? this.confirmedPassword,
         status: status ?? this.status,
-        isObscure: isObscure ?? this.isObscure);
+        isObscure: isObscure ?? this.isObscure,
+        image: image ?? this.image);
   }
 }

@@ -1,6 +1,7 @@
 import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:piyush_flutter_bloc/common/sizeconfig.dart';
 import 'package:piyush_flutter_bloc/login/cubit/login_cubit.dart';
 import 'login_form.dart';
 
@@ -14,7 +15,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Login')),
       body: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(SizeConfig.screenPadding),
         child: BlocProvider(
           create: (_) => LoginCubit(context.read<AuthenticationRepository>()),
           child: const LoginForm(),

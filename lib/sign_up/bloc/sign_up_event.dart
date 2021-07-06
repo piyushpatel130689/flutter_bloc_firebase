@@ -7,6 +7,15 @@ abstract class SignUpEvent extends Equatable {
   List<Object> get props => [];
 }
 
+class ProfileImageChanged extends SignUpEvent {
+  const ProfileImageChanged({required this.image});
+
+  final String image;
+
+  @override
+  List<Object> get props => [image];
+}
+
 class EmailChanged extends SignUpEvent {
   const EmailChanged({required this.email});
 

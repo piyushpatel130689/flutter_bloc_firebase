@@ -23,7 +23,12 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
 
   @override
   Stream<SignUpState> mapEventToState(SignUpEvent event) async* {
-    if (event is EmailChanged) {
+    if (event is ProfileImageChanged) {
+      final String profileImage = event.image;
+      yield state.copyWith(
+        image: profileImage,
+      );
+    }else if (event is EmailChanged) {
       final email = Email.dirty(event.email);
       yield state.copyWith(
         //email: email.valid ? email : Email.pure(event.email),
