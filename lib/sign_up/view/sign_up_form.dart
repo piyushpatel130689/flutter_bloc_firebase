@@ -45,7 +45,8 @@ class _EmailInput extends StatelessWidget {
     return BlocBuilder<SignUpBloc, SignUpState>(
       buildWhen: (previous, current) => previous.email != current.email,
       builder: (context, state) {
-        return TextField(
+        return TextFormField(
+          initialValue: state.email.value,
           key: const Key('signUpForm_emailInput_textField'),
           textInputAction: TextInputAction.next,
           onChanged: (value) =>
@@ -66,19 +67,27 @@ class _PasswordInput extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SignUpBloc, SignUpState>(
-      buildWhen: (previous, current) => previous.password != current.password,
+      buildWhen: (previous, current) => (previous.password != current.password || previous.isObscure != current.isObscure),
       builder: (context, state) {
-        return TextField(
+        return TextFormField(
+          initialValue: state.password.value,
           key: const Key('signUpForm_passwordInput_textField'),
           textInputAction: TextInputAction.next,
           onChanged: (value) =>
               context.read<SignUpBloc>().add(PasswordChanged(password: value)),
-          obscureText: true,
+          obscureText: state.isObscure,
           decoration: InputDecoration(
-            labelText: 'password',
-            helperText: '',
-            errorText: state.password.invalid ? 'invalid password' : null,
-          ),
+              labelText: 'password',
+              helperText: '',
+              errorText: state.password.invalid ? 'invalid password' : null,
+              suffixIcon: IconButton(
+                  icon: Icon(state.isObscure
+                      ? Icons.visibility
+                      : Icons.visibility_off),
+                  onPressed: () {
+                    context.read<SignUpBloc>().add(
+                        PasswordObscureChanged(isObscure: !state.isObscure));
+                  })),
         );
       },
     );
@@ -93,7 +102,8 @@ class _ConfirmPasswordInput extends StatelessWidget {
           previous.password != current.password ||
           previous.confirmedPassword != current.confirmedPassword,
       builder: (context, state) {
-        return TextField(
+        return TextFormField(
+          initialValue: state.confirmedPassword.value,
           key: const Key('signUpForm_confirmedPasswordInput_textField'),
           textInputAction: TextInputAction.done,
           onChanged: (value) => context

@@ -81,6 +81,11 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
         status:
             Formz.validate([state.email, state.password, confirmedPassword]),
       );
+    } else if (event is PasswordObscureChanged) {
+      final isObscure = event.isObscure;
+      yield state.copyWith(
+        isObscure: isObscure,
+      );
     } else if (event is FormSubmitted) {
       final email = Email.dirty(state.email.value);
       final password = Password.dirty(state.password.value);
@@ -112,17 +117,17 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
     }
   }
 
-  Future<void> signUpFormSubmitted() async {
-    if (!state.status.isValidated) return;
-    emit(state.copyWith(status: FormzStatus.submissionInProgress));
-    try {
-      await _authenticationRepository.signUp(
-        email: state.email.value,
-        password: state.password.value,
-      );
-      emit(state.copyWith(status: FormzStatus.submissionSuccess));
-    } on Exception {
-      emit(state.copyWith(status: FormzStatus.submissionFailure));
-    }
-  }
+// Future<void> signUpFormSubmitted() async {
+//   if (!state.status.isValidated) return;
+//   emit(state.copyWith(status: FormzStatus.submissionInProgress));
+//   try {
+//     await _authenticationRepository.signUp(
+//       email: state.email.value,
+//       password: state.password.value,
+//     );
+//     emit(state.copyWith(status: FormzStatus.submissionSuccess));
+//   } on Exception {
+//     emit(state.copyWith(status: FormzStatus.submissionFailure));
+//   }
+// }
 }

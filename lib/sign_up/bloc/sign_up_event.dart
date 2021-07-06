@@ -40,4 +40,13 @@ class ConfirmPasswordChanged extends SignUpEvent {
 
 class ConfirmPasswordUnfocused extends SignUpEvent {}
 
+class PasswordObscureChanged extends SignUpEvent {
+  const PasswordObscureChanged({required this.isObscure});
+
+  final bool isObscure;
+
+  @override
+  List<Object> get props => [isObscure];
+}
+
 class FormSubmitted extends SignUpEvent {}
