@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
-import 'package:piyush_flutter_bloc/common/auth_text_field.dart';
+import 'package:piyush_flutter_bloc/common/widget/auth_text_field.dart';
 import 'package:piyush_flutter_bloc/common/sizeconfig.dart';
 import 'package:piyush_flutter_bloc/login/cubit/login_cubit.dart';
 import 'package:piyush_flutter_bloc/sign_up/view/sign_up_page.dart';

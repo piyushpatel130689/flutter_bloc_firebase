@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:piyush_flutter_bloc/common/mystyles.dart';
 
+import 'avatar.dart';
+
 class AddImageForm extends StatelessWidget {
   final String imagePath;
   final Function(String) onChanged;
@@ -117,27 +119,6 @@ class _ImageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bool _validURL = Uri.parse(image).isAbsolute;
-    return Container(
-      height: 100,
-      width: 100,
-      child: ClipRRect(
-        borderRadius: BorderRadius.circular(50),
-        child: _validURL
-            ? Image.network(
-                image,
-                fit: BoxFit.cover,
-              )
-            : (image.isNotEmpty
-                ? Image.file(
-                    File(image),
-                    fit: BoxFit.cover,
-                  )
-                : Image.asset(
-                    'assets/user.png',
-                    height: 120,
-                  )),
-      ),
-    );
+    return  Avatar(photo: image);
   }
 }

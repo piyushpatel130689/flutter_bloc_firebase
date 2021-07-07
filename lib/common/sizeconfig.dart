@@ -7,7 +7,7 @@ class SizeConfig {
   //WIDGET SIZE
   static const double verticalSizeBoxSpace = 15;
 
-  static final double profilepicHeightWidth = 120.w;
+  static final double profilepicHeightWidth = 100.w;
 
   //FONT SIZE
   static final double fontSmallSize = 12.sp;
