@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:piyush_flutter_bloc/common/sizeconfig.dart';
 
 class Avatar extends StatelessWidget {
-  const Avatar({Key? key, required this.photo}) : super(key: key);
+  const Avatar({Key? key, required this.photo, this.imageSize})
+      : super(key: key);
 
   final String photo;
+  final double? imageSize;
 
   @override
   Widget build(BuildContext context) {
@@ -19,8 +21,8 @@ class Avatar extends StatelessWidget {
     //       : null,
     // );
     return Container(
-      height: SizeConfig.profilepicHeightWidth,
-      width: SizeConfig.profilepicHeightWidth,
+      height: imageSize ?? SizeConfig.profilepicHeightWidth,
+      width: imageSize ?? SizeConfig.profilepicHeightWidth,
       child: ClipRRect(
         borderRadius: BorderRadius.circular(50),
         child: _validURL

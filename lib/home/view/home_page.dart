@@ -1,31 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:piyush_flutter_bloc/app/bloc/app_bloc.dart';
-import 'package:piyush_flutter_bloc/common/widget/avatar.dart';
-
+import 'package:piyush_flutter_bloc/common/sizeconfig.dart';
+import 'package:piyush_flutter_bloc/home/bloc/user_bloc.dart';
+import 'home_from.dart';
+import '../../data/repositories/user_repository.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final UserRepository userRepository;
 
-  static Page page() => const MaterialPage<void>(child: HomePage());
+  const HomePage({Key? key, required this.userRepository}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final user = context.select((AppBloc bloc) => bloc.state.user);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home'),
-      ),
-      body: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Text('Hello', style: textTheme.headline5),
-          ],
-        ),
-      ),
+      appBar: AppBar(title: const Text('Users')),
+      body: Padding(
+          padding: const EdgeInsets.all(SizeConfig.screenPadding),
+          child: BlocProvider<UserBloc>(
+            create: (context) => UserBloc(
+              userRepository: userRepository,
+            )..add(HomeStarted()),
+            child: HomeForm(),
+          )),
     );
   }
 }
