@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:piyush_flutter_bloc/data/models/user_model.dart';
-import 'package:piyush_flutter_bloc/home/view/user_list_item.dart';
-import 'package:piyush_flutter_bloc/home/bloc/user_bloc.dart';
+import 'package:piyush_flutter_bloc/screen/home/bloc/user_bloc.dart';
+import 'package:piyush_flutter_bloc/screen/home/view/user_list_item.dart';
 
 class HomeForm extends StatelessWidget {
   //const HomeForm({Key? key}) : super(key: key);

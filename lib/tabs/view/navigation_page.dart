@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:piyush_flutter_bloc/api/apiclient.dart';
-import 'package:piyush_flutter_bloc/home/home.dart';
-import 'package:piyush_flutter_bloc/profile/view/profile_page.dart';
+import 'package:piyush_flutter_bloc/screen/home/view/home_page.dart';
+import 'package:piyush_flutter_bloc/screen/profile/view/profile_page.dart';
 import 'package:piyush_flutter_bloc/tabs/bloc/bottom_navigation_bloc.dart';
 import 'package:http/http.dart' as http;
 import '../../data/repositories/user_repository.dart';

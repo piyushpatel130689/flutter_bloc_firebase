@@ -4,8 +4,8 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:formz/formz.dart';
 import 'package:piyush_flutter_bloc/common/widget/auth_text_field.dart';
 import 'package:piyush_flutter_bloc/common/sizeconfig.dart';
-import 'package:piyush_flutter_bloc/login/cubit/login_cubit.dart';
-import 'package:piyush_flutter_bloc/sign_up/view/sign_up_page.dart';
+import 'package:piyush_flutter_bloc/screen/login/cubit/login_cubit.dart';
+import 'package:piyush_flutter_bloc/screen/sign_up/view/sign_up_page.dart';
 
 class LoginForm extends StatelessWidget {
   const LoginForm({Key? key}) : super(key: key);

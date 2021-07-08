@@ -2,7 +2,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:piyush_flutter_bloc/common/sizeconfig.dart';
-import 'package:piyush_flutter_bloc/login/cubit/login_cubit.dart';
+import 'package:piyush_flutter_bloc/screen/login/cubit/login_cubit.dart';
 import 'login_form.dart';
 
 class LoginPage extends StatelessWidget {

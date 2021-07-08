@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:piyush_flutter_bloc/app/bloc/app_bloc.dart';
-import '../../common/widget/avatar.dart';
+import '../../../common/widget/avatar.dart';
 
 
 class ProfilePage extends StatelessWidget {
