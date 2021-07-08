@@ -29,6 +29,11 @@ class Avatar extends StatelessWidget {
             ? Image.network(
                 photo,
                 fit: BoxFit.cover,
+                loadingBuilder: (context, widget, imageChunkEvent) {
+                  return imageChunkEvent == null
+                      ? widget
+                      : CircularProgressIndicator();
+                },
               )
             : (photo.isNotEmpty
                 ? Image.file(

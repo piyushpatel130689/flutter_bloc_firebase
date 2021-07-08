@@ -14,33 +14,44 @@ class UserListItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       key: Key(user.id.toString()),
-      child: Container(
-        child: Row(
-          children: [
-            user.avatarUrl == null
-                ? Container()
-                : Avatar(
-                    photo: user.avatarUrl.toString(),
-                    imageSize: 50,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10),
+        ),
+        child: Container(
+          padding: EdgeInsets.all(SizeConfig.listItemPadding),
+          child: Row(
+            children: [
+              user.avatarUrl == null
+                  ? Container()
+                  : Avatar(
+                      photo: user.avatarUrl.toString(),
+                      imageSize: 50,
+                    ),
+              SizedBox(
+                width: SizeConfig.verticalSizeBoxSpace,
+              ),
+              Expanded(
+                  child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    user.login.toString(),
+                    style: MyStyles.fontMediumTextBold(),
                   ),
-            SizedBox(
-              width: SizeConfig.verticalSizeBoxSpace,
-            ),
-            Expanded(
-                child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  user.login.toString(),
-                  style: MyStyles.fontMediumTextBold(),
-                ),
-                Text(
-                  user.type.toString(),
-                  style: MyStyles.fontMediumText(),
-                ),
-              ],
-            ))
-          ],
+                  Text(
+                    user.type.toString(),
+                    style: MyStyles.fontSmallText(),
+                  ),
+                ],
+              )),
+              Icon(
+                Icons.arrow_forward_ios,
+                color: Colors.grey,
+                size: 15,
+              )
+            ],
+          ),
         ),
       ),
       onTap: () => onItemClick(user),

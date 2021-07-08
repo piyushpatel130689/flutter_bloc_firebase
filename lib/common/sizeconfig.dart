@@ -6,6 +6,7 @@ class SizeConfig {
 
   //WIDGET SIZE
   static const double verticalSizeBoxSpace = 15;
+  static final double listItemPadding = 10.r;
 
   static final double profilepicHeightWidth = 100.w;
 

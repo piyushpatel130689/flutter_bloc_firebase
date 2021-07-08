@@ -8,32 +8,36 @@ class BeerListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ExpansionTile(
-      title: Text(beer.name.toString()),
-      subtitle: Text(beer.tagline.toString()),
-      childrenPadding: const EdgeInsets.all(16),
-      leading: Container(
-        margin: EdgeInsets.only(top: 8),
-        child: Text(beer.id.toString()),
+    return Card(
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(10),
       ),
-      children: [
-        Text(
-          beer.description.toString(),
-          textAlign: TextAlign.justify,
+      child: ExpansionTile(
+        title: Text(beer.name.toString(), style: MyStyles.fontMediumTextBold()),
+        subtitle:
+            Text(beer.tagline.toString(), style: MyStyles.fontSmallText()),
+        childrenPadding: EdgeInsets.all(SizeConfig.listItemPadding),
+        leading: Container(
+          margin: EdgeInsets.only(top: 8),
+          child: Text(beer.id.toString()),
         ),
-        const SizedBox(height: 20),
-        beer.imageUrl == null
-            ? Container()
-            : Image.network(
-                beer.imageUrl.toString(),
-                loadingBuilder: (context, widget, imageChunkEvent) {
-                  return imageChunkEvent == null
-                      ? widget
-                      : CircularProgressIndicator();
-                },
-                height: 300,
-              ),
-      ],
+        children: [
+          Text(beer.description.toString(),
+              textAlign: TextAlign.justify, style: MyStyles.fontSmallText()),
+          const SizedBox(height: SizeConfig.verticalSizeBoxSpace),
+          beer.imageUrl == null
+              ? Container()
+              : Image.network(
+                  beer.imageUrl.toString(),
+                  loadingBuilder: (context, widget, imageChunkEvent) {
+                    return imageChunkEvent == null
+                        ? widget
+                        : CircularProgressIndicator();
+                  },
+                  height: 300,
+                ),
+        ],
+      ),
     );
   }
 }

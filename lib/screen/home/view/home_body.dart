@@ -43,7 +43,7 @@ class HomeBody extends StatelessWidget {
           )
         },
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: 20),
+      separatorBuilder: (context, index) => const SizedBox(height: 0),
       itemCount: users.length,
     );
   }
