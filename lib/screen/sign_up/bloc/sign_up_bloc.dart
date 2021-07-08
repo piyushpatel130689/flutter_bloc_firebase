@@ -3,9 +3,7 @@ import 'package:authentication_repository/authentication_repository.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:formz/formz.dart';
-import '../../../common/confirmPassword.dart';
-import '../../../common/email.dart';
-import '../../../common/Password.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 part 'sign_up_state.dart';
 
@@ -28,7 +26,7 @@ class SignUpBloc extends Bloc<SignUpEvent, SignUpState> {
       yield state.copyWith(
         image: profileImage,
       );
-    }else if (event is EmailChanged) {
+    } else if (event is EmailChanged) {
       final email = Email.dirty(event.email);
       yield state.copyWith(
         //email: email.valid ? email : Email.pure(event.email),

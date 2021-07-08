@@ -1,6 +1,4 @@
-import 'package:piyush_flutter_bloc/data/models/beer_model.dart';
-
-import '../../api/apiclient.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 class BeerRepository {
   final ApiClient apiClient;

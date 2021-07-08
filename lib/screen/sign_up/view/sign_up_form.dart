@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:formz/formz.dart';
-import 'package:piyush_flutter_bloc/common/widget/add_image_form.dart';
-import 'package:piyush_flutter_bloc/common/widget/auth_text_field.dart';
-import 'package:piyush_flutter_bloc/common/sizeconfig.dart';
-import 'package:piyush_flutter_bloc/screen/sign_up/bloc/sign_up_bloc.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 class SignUpForm extends StatelessWidget {
   const SignUpForm({Key? key}) : super(key: key);

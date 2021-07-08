@@ -1,6 +1,4 @@
-
-import '../../api/apiclient.dart';
-import '../../data/models/user_model.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 class UserRepository {
   final ApiClient apiClient;

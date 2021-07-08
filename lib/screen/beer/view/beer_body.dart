@@ -1,75 +1,66 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:piyush_flutter_bloc/data/models/beer_model.dart';
-import 'package:piyush_flutter_bloc/screen/beer/bloc/beer_bloc.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
-import 'beer_list_item.dart';
+class BeerBody extends StatefulWidget {
+  @override
+  _BeerBodyState createState() => _BeerBodyState();
+}
 
-class BeerBody extends StatelessWidget {
-  final List<BeerModel> _beers = [];
-  final ScrollController _scrollController = ScrollController();
+class _BeerBodyState extends State<BeerBody> {
+  final _scrollController = ScrollController();
+  late BeerBloc _beerBloc;
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_onScroll);
+    _beerBloc = context.read<BeerBloc>();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: BlocConsumer<BeerBloc, BeerState>(
-        listener: (context, beerState) {
-          if (beerState is BeerLoadingState) {
-            Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text(beerState.message)));
-          } else if (beerState is BeerSuccessState && beerState.beers.isEmpty) {
-            Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text('No more beers')));
-          } else if (beerState is BeerErrorState) {
-            Scaffold.of(context)
-                .showSnackBar(SnackBar(content: Text(beerState.error)));
-            context.read()<BeerBloc>().isFetching = false;
-          }
-          return;
-        },
-        builder: (context, beerState) {
-          if (beerState is BeerInitialState ||
-              beerState is BeerLoadingState && _beers.isEmpty) {
-            return CircularProgressIndicator();
-          } else if (beerState is BeerSuccessState) {
-            _beers.addAll(beerState.beers);
-            //context.read()<BeerBloc>().isFetching = false;
-            Scaffold.of(context).hideCurrentSnackBar();
-          } else if (beerState is BeerErrorState && _beers.isEmpty) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                IconButton(
-                  onPressed: () {
-                    context.read()<BeerBloc>()
-                      ..isFetching = true
-                      ..add(BeerFetchEvent());
-                  },
-                  icon: Icon(Icons.refresh),
-                ),
-                const SizedBox(height: 15),
-                Text(beerState.error, textAlign: TextAlign.center),
-              ],
+    return BlocBuilder<BeerBloc, BeerState>(
+      builder: (context, state) {
+        switch (state.status) {
+          case BeerStatus.failure:
+            return const Center(child: Text('failed to fetch posts'));
+          case BeerStatus.success:
+            if (state.beers.isEmpty) {
+              return const Center(child: Text('no posts'));
+            }
+            return ListView.builder(
+              itemBuilder: (BuildContext context, int index) {
+                return index >= state.beers.length
+                    ? BottomLoader()
+                    : BeerListItem(beer: state.beers[index]);
+              },
+              itemCount: state.hasReachedMax
+                  ? state.beers.length
+                  : state.beers.length + 1,
+              controller: _scrollController,
             );
-          }
-          return ListView.separated(
-            controller: _scrollController
-              ..addListener(() {
-                if (_scrollController.offset ==
-                        _scrollController.position.maxScrollExtent &&
-                    !context.read()<BeerBloc>().isFetching) {
-                  context.read()<BeerBloc>()
-                    ..isFetching = true
-                    ..add(BeerFetchEvent());
-                }
-              }),
-            itemBuilder: (context, index) => BeerListItem(_beers[index]),
-            separatorBuilder: (context, index) => const SizedBox(height: 20),
-            itemCount: _beers.length,
-          );
-        },
-      ),
+          default:
+            return const Center(child: CircularProgressIndicator());
+        }
+      },
     );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+
+  void _onScroll() {
+    if (_isBottom) _beerBloc.add(FetchBeerEvent());
+  }
+
+  bool get _isBottom {
+    if (!_scrollController.hasClients) return false;
+    final maxScroll = _scrollController.position.maxScrollExtent;
+    final currentScroll = _scrollController.offset;
+    return currentScroll >= (maxScroll * 0.9);
   }
 }

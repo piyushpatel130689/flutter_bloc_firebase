@@ -1,36 +1,35 @@
 part of 'beer_bloc.dart';
 
-abstract class BeerState extends Equatable {
-  const BeerState();
+enum BeerStatus { initial, success, failure }
+
+class BeerState extends Equatable {
+  const BeerState({
+    this.status = BeerStatus.initial,
+    this.beers = const <BeerModel>[],
+    this.hasReachedMax = false,
+  });
+
+  final BeerStatus status;
+  final List<BeerModel> beers;
+  final bool hasReachedMax;
+
+  BeerState copyWith({
+    BeerStatus? status,
+    List<BeerModel>? beers,
+    bool? hasReachedMax,
+  }) {
+    return BeerState(
+      status: status ?? this.status,
+      beers: beers ?? this.beers,
+      hasReachedMax: hasReachedMax ?? this.hasReachedMax,
+    );
+  }
 
   @override
-  List<Object> get props => [];
-}
+  String toString() {
+    return '''PostState { status: $status, hasReachedMax: $hasReachedMax, posts: ${beers.length} }''';
+  }
 
-class BeerInitialState extends BeerState {
-  const BeerInitialState();
-}
-
-class BeerLoadingState extends BeerState {
-  final String message;
-
-  const BeerLoadingState({
-    required this.message,
-  });
-}
-
-class BeerSuccessState extends BeerState {
-  final List<BeerModel> beers;
-
-  const BeerSuccessState({
-    required this.beers,
-  });
-}
-
-class BeerErrorState extends BeerState {
-  final String error;
-
-  const BeerErrorState({
-    required this.error,
-  });
+  @override
+  List<Object> get props => [status, beers, hasReachedMax];
 }

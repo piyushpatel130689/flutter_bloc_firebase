@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:piyush_flutter_bloc/common/common.dart';
-import 'package:piyush_flutter_bloc/common/mystyles.dart';
-import 'package:piyush_flutter_bloc/common/sizeconfig.dart';
-import 'package:piyush_flutter_bloc/data/models/models.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 class UserListItem extends StatelessWidget {
   final UserModel user;

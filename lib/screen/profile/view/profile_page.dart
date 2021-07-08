@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:piyush_flutter_bloc/app/bloc/app_bloc.dart';
-import '../../../common/widget/avatar.dart';
-
+import 'package:piyush_flutter_bloc/lib.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);

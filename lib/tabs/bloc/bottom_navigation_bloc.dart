@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
-import '../../data/repositories/profile_repository.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 part 'bottom_navigation_event.dart';
 

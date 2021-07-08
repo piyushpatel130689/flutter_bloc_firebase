@@ -1,10 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 import 'package:http/http.dart' as http;
-import 'package:piyush_flutter_bloc/data/models/beer_model.dart';
-import '../../data/models/user_model.dart';
-
-import 'custom_network_exceptions.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 class ApiClient {
   final _baseUrl = 'https://api.github.com/users';

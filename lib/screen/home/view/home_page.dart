@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:piyush_flutter_bloc/common/sizeconfig.dart';
-import 'package:piyush_flutter_bloc/screen/home/bloc/user_bloc.dart';
-import 'home_body.dart';
-import '../../../data/repositories/user_repository.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 class HomePage extends StatelessWidget {
   final UserRepository userRepository;
@@ -15,7 +12,10 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Users')),
       body: Padding(
-          padding: const EdgeInsets.all(SizeConfig.screenPadding),
+          padding: const EdgeInsets.only(
+              left: SizeConfig.screenPadding,
+              right: SizeConfig.screenPadding,
+              top: SizeConfig.screenPadding),
           child: BlocProvider<UserBloc>(
             create: (context) => UserBloc(
               userRepository: userRepository,

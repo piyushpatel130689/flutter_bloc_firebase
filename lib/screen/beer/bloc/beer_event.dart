@@ -7,6 +7,6 @@ abstract class BeerEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class BeerFetchEvent extends BeerEvent {
-  const BeerFetchEvent();
+class FetchBeerEvent extends BeerEvent {
+  const FetchBeerEvent();
 }

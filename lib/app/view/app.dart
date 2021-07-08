@@ -3,9 +3,7 @@ import 'package:flow_builder/flow_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:piyush_flutter_bloc/app/bloc/app_bloc.dart';
-import 'package:piyush_flutter_bloc/app/routes/routes.dart';
-import '../../theme.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 class App extends StatelessWidget {
   const App({

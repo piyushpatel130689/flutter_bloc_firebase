@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:piyush_flutter_bloc/data/models/beer_model.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 class BeerListItem extends StatelessWidget {
-  final BeerModel beer;
+  const BeerListItem({Key? key, required this.beer}) : super(key: key);
 
-  const BeerListItem(this.beer);
+  final BeerModel beer;
 
   @override
   Widget build(BuildContext context) {
