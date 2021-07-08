@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:piyush_flutter_bloc/common/sizeconfig.dart';
 import 'package:piyush_flutter_bloc/screen/home/bloc/user_bloc.dart';
-import 'home_from.dart';
+import 'home_body.dart';
 import '../../../data/repositories/user_repository.dart';
 
 class HomePage extends StatelessWidget {
@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
             create: (context) => UserBloc(
               userRepository: userRepository,
             )..add(HomeStarted()),
-            child: HomeForm(),
+            child: HomeBody(),
           )),
     );
   }
