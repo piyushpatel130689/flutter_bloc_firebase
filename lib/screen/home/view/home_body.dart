@@ -3,8 +3,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:piyush_flutter_bloc/lib.dart';
 
 class HomeBody extends StatelessWidget {
-  //const HomeForm({Key? key}) : super(key: key);
-  final ScrollController _scrollController = ScrollController();
+  final Function? onNext;
+
+  const HomeBody({Key? key, this.onNext}) : super(key: key);
+
+  //final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,19 +33,19 @@ class HomeBody extends StatelessWidget {
 
   ListView _buildListView(List<UserModel> users) {
     return ListView.separated(
-      controller: _scrollController..addListener(() {}),
+      //controller: _scrollController..addListener(() {}),
       itemBuilder: (context, index) => UserListItem(
-        user: users[index],
-        onItemClick: (UserModel itemOBJ) => {
-          //Navigator.of(context).push<void>(BeerPage().route())
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) {
-              return BeerPage();
-            }),
-          )
-        },
-      ),
+          user: users[index],
+          onItemClick: (UserModel itemOBJ) => {
+                onNext != null
+                    ? onNext!(context)
+                    : Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) {
+                          return BeerPage();
+                        }),
+                      ),
+              }),
       separatorBuilder: (context, index) => const SizedBox(height: 0),
       itemCount: users.length,
     );

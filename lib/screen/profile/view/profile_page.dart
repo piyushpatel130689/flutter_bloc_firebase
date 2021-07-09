@@ -7,6 +7,12 @@ class ProfilePage extends StatelessWidget {
 
   static Page page() => const MaterialPage<void>(child: ProfilePage());
 
+  void onButtonPress(BuildContext context) {
+    Navigator.push(context, MaterialPageRoute(builder: (context) {
+      return BeerPage();
+    }));
+  }
+
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
@@ -27,11 +33,15 @@ class ProfilePage extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
-            Avatar(photo: user.photo??''),
+            Avatar(photo: user.photo ?? ''),
             const SizedBox(height: 4.0),
             Text(user.email ?? '', style: textTheme.headline6),
             const SizedBox(height: 4.0),
             Text(user.name ?? '', style: textTheme.headline5),
+            const SizedBox(height: 4.0),
+            ElevatedButtonCustomWidget(
+                text: "Go beer keep Tab",
+                onPressed: () => onButtonPress(context))
           ],
         ),
       ),

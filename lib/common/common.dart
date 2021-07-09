@@ -6,3 +6,4 @@ export 'mycolors.dart';
 export 'mystyles.dart';
 export 'password.dart';
 export 'sizeconfig.dart';
+export 'share_preference.dart';

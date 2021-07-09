@@ -4,8 +4,9 @@ import 'package:piyush_flutter_bloc/lib.dart';
 
 class HomePage extends StatelessWidget {
   final UserRepository userRepository;
+  final Function? onNext;
 
-  const HomePage({Key? key, required this.userRepository}) : super(key: key);
+  const HomePage({Key? key, required this.userRepository, this.onNext}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +21,7 @@ class HomePage extends StatelessWidget {
             create: (context) => UserBloc(
               userRepository: userRepository,
             )..add(HomeStarted()),
-            child: HomeBody(),
+            child: HomeBody(onNext: onNext,),
           )),
     );
   }
