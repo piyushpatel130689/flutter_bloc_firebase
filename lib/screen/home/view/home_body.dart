@@ -1,9 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:piyush_flutter_bloc/lib.dart';
 
 class HomeBody extends StatelessWidget {
-  final Function? onNext;
+  final Function()? onNext;
 
   const HomeBody({Key? key, this.onNext}) : super(key: key);
 
@@ -38,7 +39,7 @@ class HomeBody extends StatelessWidget {
           user: users[index],
           onItemClick: (UserModel itemOBJ) => {
                 onNext != null
-                    ? onNext!(context)
+                    ? onNext!()
                     : Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) {

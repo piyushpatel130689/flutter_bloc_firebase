@@ -4,7 +4,7 @@ import 'package:piyush_flutter_bloc/lib.dart';
 
 class HomePage extends StatelessWidget {
   final UserRepository userRepository;
-  final Function? onNext;
+  final Function()? onNext;
 
   const HomePage({Key? key, required this.userRepository, this.onNext}) : super(key: key);
 

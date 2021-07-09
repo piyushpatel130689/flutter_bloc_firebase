@@ -11,8 +11,11 @@ class NavigationPage extends StatelessWidget {
     GlobalKey<NavigatorState>(),
   ];
 
+  var mContext;
+
   @override
   Widget build(BuildContext context) {
+    this.mContext = context;
     final UserRepository userRepository = UserRepository(
       apiClient: ApiClient(httpClient: http.Client()),
     );
@@ -23,27 +26,27 @@ class NavigationPage extends StatelessWidget {
           if (state is PageLoading) {
             return Center(child: CircularProgressIndicator());
           }
-          if (state is FirstPageLoaded) {
-            return HomePage(userRepository: userRepository);
-          }
-          if (state is SecondPageLoaded) {
-            return ProfilePage();
-          }
+          // if (state is FirstPageLoaded) {
+          //   return HomePage(userRepository: userRepository);
+          // }
+          // if (state is SecondPageLoaded) {
+          //   return ProfilePage();
+          // }
 
-          // return Stack(
-          //   children: [
-          //     _buildOffstageNavigator(
-          //         context,
-          //         0,
-          //         context.read<BottomNavigationBloc>().currentIndex,
-          //         userRepository),
-          //     _buildOffstageNavigator(
-          //         context,
-          //         1,
-          //         context.read<BottomNavigationBloc>().currentIndex,
-          //         userRepository),
-          //   ],
-          // );
+          return Stack(
+            children: [
+              _buildOffstageNavigator(
+                  context,
+                  0,
+                  context.read<BottomNavigationBloc>().currentIndex,
+                  userRepository),
+              _buildOffstageNavigator(
+                  context,
+                  1,
+                  context.read<BottomNavigationBloc>().currentIndex,
+                  userRepository),
+            ],
+          );
           return Container();
         },
       ),
@@ -96,9 +99,9 @@ class NavigationPage extends StatelessWidget {
   //   };
   // }
 
-  void _next(context) {
+  void _next() {
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => BeerPage()));
+        mContext, MaterialPageRoute(builder: (context) => BeerPage()));
   }
 
   Map<String, WidgetBuilder> _routeBuilders(

@@ -30,20 +30,6 @@ class BeerBloc extends Bloc<BeerEvent, BeerState> {
     if (event is FetchBeerEvent) {
       yield await _mapBeerFetchedToState(state);
     }
-    // if (event is BeerFetchEvent) {
-    //   yield BeerLoadingState(message: 'Loading Beers');
-    //   isFetching = true;
-    //
-    //   try {
-    //     List<BeerModel> beers = await beerRepository.fetchBeers(page: page);
-    //     yield BeerSuccessState(beers: beers);
-    //     isFetching = false;
-    //     page++;
-    //   } catch (e) {
-    //     yield BeerErrorState(error: e.toString());
-    //     isFetching = false;
-    //   }
-    // }
   }
 
   Future<BeerState> _mapBeerFetchedToState(BeerState state) async {

@@ -17,6 +17,8 @@ class BeerListItem extends StatelessWidget {
         subtitle:
             Text(beer.tagline.toString(), style: MyStyles.fontSmallText()),
         childrenPadding: EdgeInsets.all(SizeConfig.listItemPadding),
+        // collapsedBackgroundColor: Colors.grey,
+        backgroundColor: Colors.black12,
         leading: Container(
           margin: EdgeInsets.only(top: 8),
           child: Text(beer.id.toString()),
