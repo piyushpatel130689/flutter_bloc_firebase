@@ -1,3 +1,4 @@
+import 'package:fancy_bottom_navigation/fancy_bottom_navigation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:piyush_flutter_bloc/tabs/bloc/bottom_navigation_bloc.dart';
@@ -29,24 +30,38 @@ class NavigationPage extends StatelessWidget {
       bottomNavigationBar:
           BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
               builder: (BuildContext context, BottomNavigationState state) {
-        return BottomNavigationBar(
-          currentIndex:
-              context.select((BottomNavigationBloc bloc) => bloc.currentIndex),
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home, color: Colors.black),
-              label: 'Home',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_circle_rounded, color: Colors.black),
-              label: 'Profile',
-            ),
-          ],
-          onTap: (index) => context
-              .read<BottomNavigationBloc>()
-              .add(PageTapped(index: index)),
-        );
-      }),
+        return FancyBottomNavigation(
+            tabs: [
+              TabData(iconData: Icons.home, title: "Home"),
+              TabData(iconData: Icons.person, title: "Profile"),
+              // TabData(iconData: Icons.shopping_cart, title: "Basket")
+            ],
+            onTabChangedListener: (position) {
+              context
+                  .read<BottomNavigationBloc>()
+                  .add(PageTapped(index: position));
+            });
+      }), // bottomNavigationBar:
+      //     BlocBuilder<BottomNavigationBloc, BottomNavigationState>(
+      //         builder: (BuildContext context, BottomNavigationState state) {
+      //   return BottomNavigationBar(
+      //     currentIndex:
+      //         context.select((BottomNavigationBloc bloc) => bloc.currentIndex),
+      //     items: const <BottomNavigationBarItem>[
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.home, color: Colors.black),
+      //         label: 'Home',
+      //       ),
+      //       BottomNavigationBarItem(
+      //         icon: Icon(Icons.account_circle_rounded, color: Colors.black),
+      //         label: 'Profile',
+      //       ),
+      //     ],
+      //     onTap: (index) => context
+      //         .read<BottomNavigationBloc>()
+      //         .add(PageTapped(index: index)),
+      //   );
+      // }),
     );
   }
 }
