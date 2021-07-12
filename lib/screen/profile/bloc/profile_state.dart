@@ -2,19 +2,19 @@ part of 'profile_bloc.dart';
 
 class ProfileState extends Equatable {
   const ProfileState({
-    this.isDarkTheme = false,
+    this.fieldVal = "",
   });
 
-  final bool isDarkTheme;
+  final String fieldVal;
 
   @override
-  List<Object> get props => [isDarkTheme];
+  List<Object> get props => [fieldVal];
 
   ProfileState copyWith({
     bool? isDarkTheme,
   }) {
     return ProfileState(
-      isDarkTheme: isDarkTheme ?? this.isDarkTheme,
+      fieldVal: fieldVal ?? this.fieldVal,
     );
   }
 }

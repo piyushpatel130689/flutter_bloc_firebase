@@ -27,8 +27,13 @@ class ProfilePage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(SizeConfig.screenPadding),
-        child: BlocProvider(
-          create: (_) => ProfileBloc(),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider<ProfileBloc>(
+                create: (BuildContext context) => ProfileBloc()),
+            BlocProvider<ThemeBloc>(
+                create: (BuildContext context) => ThemeBloc())
+          ],
           child: ProfileBody(
             textTheme: textTheme,
             user: user,

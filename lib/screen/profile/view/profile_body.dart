@@ -32,11 +32,52 @@ class ProfileBody extends StatelessWidget {
                   const SizedBox(height: SizeConfig.verticalSizeBoxSpace),
                   Text(user.name ?? '', style: textTheme.headline5),
                   const SizedBox(height: SizeConfig.verticalSizeBoxSpace),
+                  _ThemeField(),
+                  const SizedBox(height: SizeConfig.verticalSizeBoxSpace),
                   ElevatedButtonCustomWidget(
                       text: "Go beer keep Tab",
                       onPressed: () => onButtonPress(context))
                 ],
               ),
             )));
+  }
+}
+
+class _ThemeField extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<ThemeBloc, ThemeState>(
+      // buildWhen: (previous, current) =>
+      //     previous.isDarkTheme != current.isDarkTheme,
+      builder: (context, state) {
+        return LinkedLabelSwitch(
+          label: 'Dark mode enabled',
+          padding: const EdgeInsets.symmetric(horizontal: 20.0),
+          value: context.read<ThemeBloc>().isDarkMode,
+          onChanged: (bool newValue) {
+            MySharePreference().setDarkMode(newValue);
+            if (newValue) {
+              context
+                  .read<ThemeBloc>()
+                  .add(ThemeChangeEvent(themeData: ThemeData.dark()));
+            } else {
+              context
+                  .read<ThemeBloc>()
+                  .add(ThemeChangeEvent(themeData: ThemeData.light()));
+            }
+            // MySharePreference().getIsDarkMode().then((resultVal) {
+            //   if (resultVal) {
+            //     context.read<ThemeBloc>().add(
+            //         ThemeChangeEvent(themeData: ThemeData.dark()));
+            //   } else {
+            //     context.read<ThemeBloc>().add(
+            //         ThemeChangeEvent(themeData: ThemeData.light()));
+            //   }/**/
+            //   print('=======$resultVal');
+            // });
+          },
+        );
+      },
+    );
   }
 }
