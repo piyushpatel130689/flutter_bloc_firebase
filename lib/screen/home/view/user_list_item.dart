@@ -37,7 +37,7 @@ class UserListItem extends StatelessWidget {
                 children: [
                   Text(
                     user.login.toString(),
-                    style: MyStyles.fontMediumTextBold(),
+                    style: MyStyles.fontRegularTextBold(),
                   ),
                   Text(
                     user.type.toString(),

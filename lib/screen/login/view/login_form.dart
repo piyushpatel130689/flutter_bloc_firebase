@@ -34,7 +34,7 @@ class LoginForm extends StatelessWidget {
               _EmailInput(),
               const SizedBox(height: SizeConfig.verticalSizeBoxSpace),
               _PasswordInput(),
-              const SizedBox(height: SizeConfig.verticalSizeBoxSpace),
+              const SizedBox(height: SizeConfig.verticalSizeBoxSpace * 2),
               _LoginButton(),
               const SizedBox(height: SizeConfig.verticalSizeBoxSpace),
               _GoogleLoginButton(),
@@ -100,19 +100,12 @@ class _LoginButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : ElevatedButton(
+            : ElevatedButtonCustomWidget(
                 key: const Key('loginForm_continue_raisedButton'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  primary: const Color(0xFFFFD600),
-                ),
+                text: "LOGIN",
                 onPressed: state.status.isValidated
                     ? () => context.read<LoginCubit>().logInWithCredentials()
-                    : null,
-                child: const Text('LOGIN'),
-              );
+                    : null);
       },
     );
   }
@@ -124,9 +117,9 @@ class _GoogleLoginButton extends StatelessWidget {
     final theme = Theme.of(context);
     return ElevatedButton.icon(
       key: const Key('loginForm_googleLogin_raisedButton'),
-      label: const Text(
+      label: Text(
         'SIGN IN WITH GOOGLE',
-        style: TextStyle(color: Colors.white),
+        style: MyStyles.fontButtonText(),
       ),
       style: ElevatedButton.styleFrom(
         shape: RoundedRectangleBorder(
@@ -149,7 +142,7 @@ class _SignUpButton extends StatelessWidget {
       onPressed: () => Navigator.of(context).push<void>(SignUpPage.route()),
       child: Text(
         'CREATE ACCOUNT',
-        style: TextStyle(color: theme.primaryColor),
+        style: MyStyles.fontRegularTextBold(),
       ),
     );
   }

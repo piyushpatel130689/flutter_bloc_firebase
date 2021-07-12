@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Users')),
+      appBar: AppBar(title: Text('Users',style: MyStyles.fontScreenTitleTextBold(),)),
       body: Padding(
           padding: const EdgeInsets.only(
               left: SizeConfig.screenPadding,

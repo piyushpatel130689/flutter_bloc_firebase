@@ -12,6 +12,9 @@ class SizeConfig {
 
   //FONT SIZE
   static final double fontSmallSize = 12.sp;
-  static final double fontMediumSize = 15.sp;
-  static final double fontLargeSize = 18.sp;
+  static final double fontRegularSize = 15.sp;
+  static final double fontMediumSize = 17.sp;
+  static final double fontLargeSize = 20.sp;
+  static final double fontScreenTitleSize = 16.sp;
+  static final double fontButtonSize = 12.sp;
 }

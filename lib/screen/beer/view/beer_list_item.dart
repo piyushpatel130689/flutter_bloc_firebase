@@ -13,7 +13,7 @@ class BeerListItem extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: ExpansionTile(
-        title: Text(beer.name.toString(), style: MyStyles.fontMediumTextBold()),
+        title: Text(beer.name.toString(), style: MyStyles.fontRegularTextBold()),
         subtitle:
             Text(beer.tagline.toString(), style: MyStyles.fontSmallText()),
         childrenPadding: EdgeInsets.all(SizeConfig.listItemPadding),

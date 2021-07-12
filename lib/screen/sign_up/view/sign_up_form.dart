@@ -33,7 +33,7 @@ class SignUpForm extends StatelessWidget {
                   _PasswordInput(),
                   const SizedBox(height: SizeConfig.verticalSizeBoxSpace),
                   _ConfirmPasswordInput(),
-                  const SizedBox(height: SizeConfig.verticalSizeBoxSpace),
+                  const SizedBox(height: SizeConfig.verticalSizeBoxSpace * 2),
                   _SignUpButton(),
                 ],
               ),
@@ -148,19 +148,12 @@ class _SignUpButton extends StatelessWidget {
       builder: (context, state) {
         return state.status.isSubmissionInProgress
             ? const CircularProgressIndicator()
-            : ElevatedButton(
+            : ElevatedButtonCustomWidget(
                 key: const Key('signUpForm_continue_raisedButton'),
-                style: ElevatedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30.0),
-                  ),
-                  primary: Colors.orangeAccent,
-                ),
+                text: "SIGN UP",
                 onPressed: state.status.isValidated
                     ? () => context.read<SignUpBloc>().add(FormSubmitted())
-                    : null,
-                child: const Text('SIGN UP'),
-              );
+                    : null);
       },
     );
   }

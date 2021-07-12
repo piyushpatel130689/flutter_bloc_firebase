@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:piyush_flutter_bloc/common/common.dart';
 
 class AuthTextField extends StatelessWidget {
   final String labelText;
@@ -38,6 +39,8 @@ class AuthTextField extends StatelessWidget {
       child: TextFormField(
         keyboardType: keyboardType,
         decoration: InputDecoration(
+            hintStyle: MyStyles.fontRegularText(),
+            labelStyle: MyStyles.fontRegularText(),
             labelText: labelText,
             // fillColor: Colors.white,
             contentPadding: EdgeInsets.symmetric(horizontal: 12),

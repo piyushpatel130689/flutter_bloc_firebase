@@ -40,7 +40,7 @@ class AddImageForm extends StatelessWidget {
         ),
         Text(
           'Add Profile Image',
-          style: MyStyles.fontMediumText(),
+          style: MyStyles.fontRegularText(),
         ),
       ],
     );

@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:meta/meta.dart';
+import 'package:piyush_flutter_bloc/lib.dart';
 
 class ElevatedButtonCustomWidget extends StatelessWidget {
+  final Key? key;
   final Icon? icon;
   final String text;
-  final Function() onPressed;
+  final Function()? onPressed;
   final bool widthFull;
 
   ElevatedButtonCustomWidget(
-      {this.icon,
+      {this.key,
+      this.icon,
       required this.text,
       required this.onPressed,
       this.widthFull = true});
@@ -19,7 +21,11 @@ class ElevatedButtonCustomWidget extends StatelessWidget {
       return (this.widthFull != null && this.widthFull)
           ? Flexible(
               child: ElevatedButton.icon(
-              label: Text(this.text),
+              key: key,
+              label: Text(
+                this.text,
+                style: MyStyles.fontButtonText(),
+              ),
               icon: icon ??
                   Icon(
                     Icons.add,
@@ -33,7 +39,11 @@ class ElevatedButtonCustomWidget extends StatelessWidget {
                   fixedSize: Size(MediaQuery.of(context).size.width / 2, 10)),
             ))
           : ElevatedButton.icon(
-              label: Text(this.text),
+              key: key,
+              label: Text(
+                this.text,
+                style: MyStyles.fontButtonText(),
+              ),
               icon: icon ??
                   Icon(
                     Icons.add,
@@ -50,7 +60,11 @@ class ElevatedButtonCustomWidget extends StatelessWidget {
       return (this.widthFull != null && this.widthFull)
           ? Flexible(
               child: ElevatedButton(
-              child: Text(this.text),
+              key: key,
+              child: Text(
+                this.text,
+                style: MyStyles.fontButtonText(),
+              ),
               onPressed: this.onPressed,
               style: ElevatedButton.styleFrom(
                   primary: Colors.indigo,
@@ -59,7 +73,11 @@ class ElevatedButtonCustomWidget extends StatelessWidget {
                   fixedSize: Size(MediaQuery.of(context).size.width, 10)),
             ))
           : ElevatedButton(
-              child: Text(this.text),
+              key: key,
+              child: Text(
+                this.text,
+                style: MyStyles.fontButtonText(),
+              ),
               onPressed: this.onPressed,
               style: ElevatedButton.styleFrom(
                   primary: Colors.indigo,

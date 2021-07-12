@@ -7,19 +7,16 @@ class ProfilePage extends StatelessWidget {
 
   static Page page() => const MaterialPage<void>(child: ProfilePage());
 
-  void onButtonPress(BuildContext context) {
-    Navigator.push(context, MaterialPageRoute(builder: (context) {
-      return BeerPage();
-    }));
-  }
-
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     final user = context.select((AppBloc bloc) => bloc.state.user);
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Profile'),
+        title: Text(
+          'Profile',
+          style: MyStyles.fontScreenTitleTextBold(),
+        ),
         actions: <Widget>[
           IconButton(
             key: const Key('homePage_logout_iconButton'),
@@ -28,21 +25,14 @@ class ProfilePage extends StatelessWidget {
           )
         ],
       ),
-      body: Align(
-        alignment: const Alignment(0, -1 / 3),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            Avatar(photo: user.photo ?? ''),
-            const SizedBox(height: 4.0),
-            Text(user.email ?? '', style: textTheme.headline6),
-            const SizedBox(height: 4.0),
-            Text(user.name ?? '', style: textTheme.headline5),
-            const SizedBox(height: 4.0),
-            ElevatedButtonCustomWidget(
-                text: "Go beer keep Tab",
-                onPressed: () => onButtonPress(context))
-          ],
+      body: Padding(
+        padding: const EdgeInsets.all(SizeConfig.screenPadding),
+        child: BlocProvider(
+          create: (_) => ProfileBloc(),
+          child: ProfileBody(
+            textTheme: textTheme,
+            user: user,
+          ),
         ),
       ),
     );

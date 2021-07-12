@@ -19,7 +19,11 @@ class BeerPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Beers')),
+      appBar: AppBar(
+          title: Text(
+        'Beers',
+        style: MyStyles.fontScreenTitleTextBold(),
+      )),
       body: Padding(
           padding: const EdgeInsets.only(
               left: SizeConfig.screenPadding,
